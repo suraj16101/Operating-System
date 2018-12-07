@@ -1,0 +1,114 @@
+﻿Operating Systems
+
+
+Assignment 2
+Part 1
+
+
+* Dewangee Agrawal (2016034)
+* Suraj Prathik Kumar (2016101)
+
+
+
+
+
+
+Description of your code and how you implemented the function -
+
+
+We have implemented socket programming.
+Socket programming is a way by which we can connect two nodes on a network to communicate with each other.
+We assigned PORT(5000)
+This the port which is used to connect to server and client.
+The following functions are used for the same :
+
+
+Server :
+
+
+* Socket:  Used to create a socket.
+* Bind: The socket created in bound to the specified address and port number.
+* Listen: This allows the server to wait for connection request from a client in passive mode.
+* Accept: Accepts a connection between a server and client for data transfer.
+* Recv: Receives messages from different client sockets. 
+* Send: Sends messages to different client sockets.
+
+
+Client
+
+
+* Socket:  Used to create a socket.
+* Connect: Used to connect the socket to its specified address.
+* Send: Sends messages to the server socket.
+* Recv: Receives messages from the server socket.  
+
+
+The logical and implementation details -
+
+
+There are 2 codes for server and client.
+In Server.c:
+* The Program books a port for the implementation (eg: PORT number 5000)
+* Client program sends a request to server to connect to the socket of that server.
+* After connection if a client sends the message the server receives the message from the client and copies it and checks if “/” is present.
+* If “/” not present sends the message to all the clients that are connected in the socket in server.
+* If “/” is present the message is sent to the exact specified socket which is connect to the server.
+        
+
+
+In Client,c :
+* The Programs are given the same Port number as of the server through which  it can connect to it.
+* Client after successful connection to the Port can communicate through the sockets.
+* Client can send message through the socket to the server.
+
+
+
+
+Description of how to compile and test the program -
+
+
+* Use make for getting executable files.
+* Open n terminals - One for the server and n-1 for the clients.
+* Type message in one client and the other client terminals will receive the message through server.
+* If after the message one client types “/” followed by socket number only that client(terminal) will receive the message.
+
+
+The inputs the user should give - 
+
+
+* In the client terminal :
+   *  “./client” for building the server.
+   * For group chat :
+      * The client directly types in the text meant to be sent to all the recipients. 
+      * For example - Hi Guys!
+   * For single recipient : 
+      * The client types the text to be sent to a single recipient followed by a forward slash (“/”) and the socket number of the receiving client. 
+      * For example - Hi Jared!/4 ( Here, 4 is the socket number of client Jared)
+
+
+* In the server terminal :
+   * “sudo ./server” for building the server.
+   * The server waits for the clients to connect through port 5000.
+
+
+Expected output (and how to interpret it) -
+
+
+* All the client terminals receive the messages meant for the group chat and display it.
+* Only the client terminal corresponding to a single socket number receives the message meant specifically for it and displays it in the terminal.
+
+
+Error values and how to interpret them -
+
+
+* Client
+   * socket() function - If the socket function returns -1 instead of the socket’s file descriptor, “Error : Socket" is displayed before the error.
+   * connect() function - If the connect function returns -1 instead of successfully connecting to the socket, “Error : Connect" is displayed before the error.
+
+
+* Server 
+   * socket() function - If the socket function returns -1 instead of the socket’s file descriptor, “Error : Socket" is displayed before the error.
+   * bind() function - If the bind function returns -1 instead of binding a name to the socket, “Unable to bind" is displayed before the error.
+   * accept() function - If the accept function returns -1 instead of accepting a connection from a socket, “Error : Connection not accepted" is displayed before the error.
+   * recv() function - If the recv function returns -1 instead of receiving a message from a socket, “Error in Receiving" is displayed before the error.
+   * send() function - If the recv function returns -1 instead of sending a message to a socket, “Error in Sending" is displayed before the error.
