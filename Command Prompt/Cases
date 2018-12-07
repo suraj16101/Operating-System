@@ -1,0 +1,20 @@
+cd Desktop
+cd ..
+cd -
+cd Desktop/os
+echo "hi hi"
+pwd
+history
+history -c
+ls
+ls -l
+ls -Q
+mkdir Hi
+rm file
+date
+date %a
+date %D
+date %x
+cat file
+cat file file1
+exit
